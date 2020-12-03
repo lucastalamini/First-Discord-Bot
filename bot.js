@@ -14,6 +14,10 @@ client.on("message", async (message) => {
 
   const args = message.content.substring(PREFIX.length).split(" ");
 
+  if (message.content.startsWith(`${PREFIX}nicole`)) {
+    message.channel.send(`twitch.tv/nnnicolez`);
+  }
+
   if (message.content.startsWith(`${PREFIX}play`)) {
     const voiceChannel = message.member.voice.channel;
     if (!voiceChannel)
