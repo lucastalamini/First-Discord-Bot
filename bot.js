@@ -1,6 +1,7 @@
 require("dotenv").config();
 
-const { Client } = require("discord.js");
+const { Client, DiscordAPIError } = require("discord.js");
+const Discord = require("discord.js");
 const ytdl = require("ytdl-core");
 const PREFIX = "!";
 
@@ -21,9 +22,11 @@ client.on("message", async (message) => {
 
   // Nicholai
   if (message.content.startsWith(`${PREFIX}nicholai`)) {
-    message.channel.send(
-      `"Eroge é bom cara" https://tenor.com/view/anime-funny-weeb-waifu-anime-roast-your-waifu-isnt-real-gif-15764528`
+    let nichoEmbed = new Discord.MessageEmbed().setImage(
+      "https://i.ytimg.com/vi/V117VO2JGwI/maxresdefault.jpg"
     );
+
+    message.channel.send(`"Eroge é bom cara"`, nichoEmbed);
   }
 
   // Music bot
