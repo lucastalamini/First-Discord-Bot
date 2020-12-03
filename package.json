@@ -3,22 +3,28 @@
   "version": "1.0.0",
   "description": "",
   "main": "bot.js",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "ffmpeg": "^0.0.4",
+    "ffmpeg-static": "^4.2.7",
+    "fluent-ffmpeg": "^2.1.2",
+    "opusscript": "0.0.7",
+    "ytdl-core": "^4.1.2"
+  },
+  "devDependencies": {},
   "scripts": {
-    "start": "node bot.js",
-    "devStart": "nodemon bot.js"
+    "start": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucastalamini/First-Discord-Bot.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@discordjs/opus": "^0.3.3",
-    "discord.js": "^12.5.1",
-    "dotenv": "^8.2.0",
-    "ffmpeg": "0.0.4",
-    "fluent-ffmpeg": "^2.1.2",
-    "ytdl-core": "^4.1.1"
+  "bugs": {
+    "url": "https://github.com/lucastalamini/First-Discord-Bot/issues"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.6"
-  }
+  "homepage": "https://github.com/lucastalamini/First-Discord-Bot#readme"
 }
