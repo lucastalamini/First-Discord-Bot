@@ -1,17 +1,60 @@
 require("dotenv").config();
 
-const Discord = require("discord.js");
-const client = new Discord.Client({
-  partials: ["MESSAGE"],
-});
+const { Client } = require("discord.js");
+const ytdl = require("ytdl-core");
+const PREFIX = "!";
 
-client.on("ready", () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
+const client = new Client({ disableEveryone: true });
 
-client.on("message", (msg) => {
-  if (msg.content === `ping`) {
-    msg.reply("Pong!");
+client.on("ready", () => console.log("Active"));
+
+client.on("message", async (message) => {
+  if (message.author.bot) return;
+  if (!message.content.startsWith(PREFIX)) return;
+
+  const args = message.content.substring(PREFIX.length).split(" ");
+
+  if (message.content.startsWith(`${PREFIX}play`)) {
+    const voiceChannel = message.member.voice.channel;
+    if (!voiceChannel)
+      return "You need to be in a voice channel to play music.";
+    const permissions = voiceChannel.permissionsFor(message.client.user);
+    if (!permissions.has("CONNECT"))
+      return message.channel.send(
+        "I don't have permissions to connect to this voice channel."
+      );
+    if (!permissions.has("SPEAK"))
+      return message.channel.send(
+        "I don't have permissions to speak in this channel."
+      );
+
+    try {
+      var connection = await voiceChannel.join();
+    } catch (error) {
+      console.log(
+        `There was an error connecting to the voice channel: ${error}`
+      );
+      message.channel.send(
+        `There was an error connecting to the voice channel: ${error}`
+      );
+    }
+
+    const dispatcher = connection
+      .play(ytdl(args[1]))
+      .on("finish", () => {
+        voiceChannel.leave();
+      })
+      .on("error", (error) => {
+        console.log(error);
+      });
+    dispatcher.setVolumeLogarithmic(5 / 5);
+  } else if (message.content.startsWith(`${PREFIX}stop`)) {
+    if (!message.member.voice.channel)
+      return message.channel.send(
+        "You need to be in a voice channel to stop the music"
+      );
+    message.member.voice.channel.leave();
+    return undefined;
   }
 });
 
