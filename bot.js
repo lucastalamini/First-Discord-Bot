@@ -14,10 +14,19 @@ client.on("message", async (message) => {
 
   const args = message.content.substring(PREFIX.length).split(" ");
 
+  // Nicole
   if (message.content.startsWith(`${PREFIX}nicole`)) {
     message.channel.send(`twitch.tv/nnnicolez`);
   }
 
+  // Nicholai
+  if (message.content.startsWith(`${PREFIX}nicholai`)) {
+    message.channel.send(
+      `"Eroge é bom cara" https://tenor.com/view/anime-funny-weeb-waifu-anime-roast-your-waifu-isnt-real-gif-15764528`
+    );
+  }
+
+  // Music bot
   if (message.content.startsWith(`${PREFIX}play`)) {
     const voiceChannel = message.member.voice.channel;
     if (!voiceChannel)
