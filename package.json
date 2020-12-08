@@ -10,7 +10,7 @@
     "ffmpeg-static": "^4.2.7",
     "fluent-ffmpeg": "^2.1.2",
     "opusscript": "0.0.7",
-    "ytdl-core": "^4.1.2"
+    "ytdl-core": "^4.1.4"
   },
   "devDependencies": {},
   "scripts": {
